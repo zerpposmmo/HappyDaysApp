@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import {Tour} from "../../app/tour";
+import {ApiProvider} from "../../providers/api/api";
 
 /**
  * Generated class for the TourListPage page.
@@ -15,13 +17,29 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class TourListPage {
 
-  items: Array<{title: string, note: string, icon: string}>;
-  
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  items: Array<Tour>;
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, public apiProvider: ApiProvider) {
+    this.items = [];
+    this.populateItems();
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad TourListPage');
   }
 
+  populateItems() {
+    this.apiProvider.get('tours')
+      .then(data => {
+        Object.keys(data).forEach(key=> {
+          this.items.push(new Tour(parseInt(key)));
+        });
+      });
+  }
+
+  itemTapped(event, item) {
+    this.navCtrl.push(TourListPage, {
+      item: item
+    });
+  }
 }
