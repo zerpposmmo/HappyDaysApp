@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {Tour} from "../../app/tour";
 import {ApiProvider} from "../../providers/api/api";
+import {TourPage} from "../tour/tour";
 
 /**
  * Generated class for the TourListPage page.
@@ -32,13 +33,13 @@ export class TourListPage {
     this.apiProvider.get('tours')
       .then(data => {
         Object.keys(data).forEach(key=> {
-          this.items.push(new Tour(parseInt(key)));
+          this.items.push(new Tour(parseInt(data[key].ID)));
         });
       });
   }
 
   itemTapped(event, item) {
-    this.navCtrl.push(TourListPage, {
+    this.navCtrl.push(TourPage, {
       item: item
     });
   }

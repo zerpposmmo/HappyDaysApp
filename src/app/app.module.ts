@@ -10,12 +10,14 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { HttpClientModule } from '@angular/common/http';
 import { ApiProvider } from '../providers/api/api';
+import {TourPage} from "../pages/tour/tour";
 
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
-    TourListPage
+    TourListPage,
+    TourPage
   ],
   imports: [
     BrowserModule,
@@ -26,7 +28,8 @@ import { ApiProvider } from '../providers/api/api';
   entryComponents: [
     MyApp,
     HomePage,
-    TourListPage
+    TourListPage,
+    TourPage
   ],
   providers: [
     StatusBar,

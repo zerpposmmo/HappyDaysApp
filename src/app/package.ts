@@ -1,18 +1,24 @@
 import {Product} from "./product";
-import {Order} from "./order";
 import {Tour} from "./tour";
 
 export class Package {
+  private _id: number;
   private _products: Array<Product>;
   private _poidsMax: number;
   private _volumeMax: number;
-  private _order: Order;
-  tour: Tour;
+  private _orderId: number;
+  private _tour: Tour;
 
-  constructor(products: Array<Product>, poidsMax: number, volumeMax: number) {
-    this._products = products;
+  constructor(id: number,poidsMax: number, volumeMax: number, orderid: number, tour: Tour) {
+    this._id = id;
     this._poidsMax = poidsMax;
     this._volumeMax = volumeMax;
+    this._orderId = orderid;
+    this._tour = tour;
+  }
+
+  get id(): number {
+    return this._id;
   }
 
   get products(): Array<Product> {
@@ -27,7 +33,11 @@ export class Package {
     return this._volumeMax;
   }
 
-  get order(): Order {
-    return this._order;
+  get orderId(): number {
+    return this._orderId;
+  }
+
+  get tour(): Tour {
+    return this._tour;
   }
 }
