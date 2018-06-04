@@ -4,13 +4,6 @@ import {Tour} from "../../app/tour";
 import {ApiProvider} from "../../providers/api/api";
 import {Package} from "../../app/package";
 
-/**
- * Generated class for the TourPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
-
 @IonicPage()
 @Component({
   selector: 'page-tour',

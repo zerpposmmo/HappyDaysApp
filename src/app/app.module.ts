@@ -4,20 +4,31 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
-import {TourListPage} from "../pages/tour-list/tour-list";
+import { TourListPage } from "../pages/tour-list/tour-list";
+import { TourPage } from "../pages/tour/tour";
+import { OrderPage } from "../pages/order/order";
+import { OrderListPage } from "../pages/order-list/order-list";
+import { ProductPage } from "../pages/product/product";
+import { ProductListPage } from "../pages/product-list/product-list";
+
+
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { HttpClientModule } from '@angular/common/http';
 import { ApiProvider } from '../providers/api/api';
-import {TourPage} from "../pages/tour/tour";
 
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
+    TourPage, 
     TourListPage,
-    TourPage
+    OrderPage,
+    OrderListPage, 
+    ProductPage,
+    ProductListPage
+
   ],
   imports: [
     BrowserModule,
@@ -29,7 +40,11 @@ import {TourPage} from "../pages/tour/tour";
     MyApp,
     HomePage,
     TourListPage,
-    TourPage
+    TourPage, 
+    OrderPage,
+    OrderListPage, 
+    ProductPage,
+    ProductListPage
   ],
   providers: [
     StatusBar,

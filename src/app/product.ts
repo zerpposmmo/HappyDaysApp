@@ -4,13 +4,16 @@ export class Product {
   private _id: number;
   private _poids: number;
   private _volume: number;
-  private _location: Location;
+  private _x: number;
+  private _y: number;
+  
 
-  constructor(id: number, poids: number, volume: number, location: Location) {
+  constructor(id: number, poids: number, volume: number, x : number, y : number) {
     this._id = id;
     this._poids = poids;
     this._volume = volume;
-    this._location = location;
+    this._x = x;
+    this._y = y;
   }
 
   get id(): number {
@@ -25,7 +28,10 @@ export class Product {
     return this._volume;
   }
 
-  get location(): Location {
-    return this._location;
+  get x(): number {
+    return this._x;
+  }
+  get y(): number {
+    return this._y;
   }
 }

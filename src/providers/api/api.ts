@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import {ENV} from "../../envrionments/environment";
+import {ENV} from "../../environments/environment";
 
 /*
   Generated class for the ApiProvider provider.
