@@ -11,8 +11,6 @@ import { OrderListPage } from "../pages/order-list/order-list";
 import { ProductPage } from "../pages/product/product";
 import { ProductListPage } from "../pages/product-list/product-list";
 
-
-
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { HttpClientModule } from '@angular/common/http';
@@ -22,13 +20,13 @@ import { ApiProvider } from '../providers/api/api';
   declarations: [
     MyApp,
     HomePage,
-    TourPage, 
+    TourPage,
     TourListPage,
     OrderPage,
-    OrderListPage, 
+    OrderListPage,
     ProductPage,
-    ProductListPage
-
+    ProductListPage,
+    TourPage,
   ],
   imports: [
     BrowserModule,
@@ -40,11 +38,12 @@ import { ApiProvider } from '../providers/api/api';
     MyApp,
     HomePage,
     TourListPage,
-    TourPage, 
+    TourPage,
     OrderPage,
-    OrderListPage, 
+    OrderListPage,
     ProductPage,
-    ProductListPage
+    ProductListPage,
+    TourPage,
   ],
   providers: [
     StatusBar,

@@ -11,7 +11,7 @@ import { ApiProvider } from "../../providers/api/api";
 })
 export class OrderPage {
 
-  order : Order; 
+  order : Order;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,  public apiProvider: ApiProvider) {
     this.order = this.navParams.get('item');
