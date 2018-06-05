@@ -1,18 +1,16 @@
-import {Product} from "./product";
-
 export class OrderLine {
-  private _product: Product;
+  private _productId: number;
   private _quantity: number;
 
 
-  constructor(product: Product, quantity: number) {
-    this._product = product;
+  constructor(productId: number, quantity: number) {
+    this._productId = productId;
     this._quantity = quantity;
   }
 
 
-  get product(): Product {
-    return this._product;
+  get productId(): number {
+    return this._productId;
   }
 
   get quantity(): number {

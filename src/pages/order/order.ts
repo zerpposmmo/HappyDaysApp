@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Order } from "../../app/order";
 import { ApiProvider } from "../../providers/api/api";
+import {Product} from "../../app/product";
+import {OrderLine} from "../../app/orderLine";
 
 
 @IonicPage()
@@ -12,8 +14,10 @@ import { ApiProvider } from "../../providers/api/api";
 export class OrderPage {
 
   order : Order;
+  items : Array<OrderLine>;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,  public apiProvider: ApiProvider) {
+    this.items = [];
     this.order = this.navParams.get('item');
     this.getOrderInfo();
   }
@@ -26,8 +30,8 @@ export class OrderPage {
     this.apiProvider.get('order/' + this.order.id)
       .then(data => {
         Object.keys(data).forEach(key=> {
-          let p = new Order(parseInt(data[key].ID),parseInt(data[key].COLISMAX));
-          this.order = p;
+          let ol = new OrderLine(data[key].ID, data[key].QUANTITE);
+          this.items.push(ol);
         });
       });
   }
