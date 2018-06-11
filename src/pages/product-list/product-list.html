@@ -3,14 +3,44 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Liste des produits</ion-title>
+    <ion-title *ngIf="this.navParams.get('item')">Colis n°{{this.navParams.get('item').id}}</ion-title>
+    <ion-title *ngIf="this.navParams.get('item') == undefined">Liste des produits</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content>
   <ion-list>
     <button ion-item *ngFor="let item of items" (click)="itemTapped($event, item)">
-      Tournée {{item.id}}
+      <ion-card>
+        <ion-card-header>
+          Produit {{item.id}}
+        </ion-card-header>
+        <ion-card-content>
+          <ul>
+            <li *ngIf="item.product">
+              Localisation : X = {{item.product.x}}, Y = {{item.product.y}}
+            </li>
+            <li *ngIf="item.product">
+              Poids : {{item.product.poids}}
+            </li>
+            <li *ngIf="item.product">
+              Volume : {{item.product.volume}}
+            </li>
+            <li *ngIf="!item.product">
+              Localisation : X = {{item.x}}, Y = {{item.y}}
+            </li>
+            <li *ngIf="!item.product">
+              Poids : {{item.poids}}
+            </li>
+            <li *ngIf="!item.product">
+              Volume : {{item.volume}}
+            </li>
+            <li *ngIf="item.quantity">
+              Quantité : {{item.quantity}}
+            </li>
+          </ul>
+        </ion-card-content>
+      </ion-card>
     </button>
   </ion-list>
   <div *ngIf="selectedItem" padding>

@@ -10,7 +10,7 @@ import { Product } from "../../app/product"
 })
 export class ProductPage {
 
-  product : Product; 
+  product: Product;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,  public apiProvider: ApiProvider) {
     this.product = this.navParams.get('item');
@@ -25,7 +25,7 @@ export class ProductPage {
     this.apiProvider.get('product/' + this.product.id)
       .then(data => {
         Object.keys(data).forEach(key=> {
-          let p = new Product(parseInt(data[key].ID), parseInt(data[key].POIDS), parseInt(data[key].VOLUME), parseInt(data[key].X), parseInt(data[key].Y)); 
+          let p = new Product(parseInt(data[key].ID), parseInt(data[key].POIDS), parseInt(data[key].VOLUME), parseInt(data[key].X), parseInt(data[key].Y));
           this.product = p;
         });
       });

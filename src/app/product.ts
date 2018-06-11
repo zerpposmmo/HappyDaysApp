@@ -1,12 +1,10 @@
-import {Location} from "./location";
-
 export class Product {
   private _id: number;
   private _poids: number;
   private _volume: number;
   private _x: number;
   private _y: number;
-  
+
 
   constructor(id: number, poids: number, volume: number, x : number, y : number) {
     this._id = id;

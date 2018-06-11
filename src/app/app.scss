@@ -1,6 +1,5 @@
 // http://ionicframework.com/docs/theming/
 
-
 // App Global Sass
 // --------------------------------------------------
 // Put style rules here that you want to apply globally. These
@@ -14,3 +13,22 @@
 // To declare rules for a specific mode, create a child rule
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
+
+.toolbar-background-md {
+  background-color: #005f63;
+  border-color: #003539;
+}
+
+.bar-button-default-md, .bar-button-clear-md-default, .bar-button-md-default,
+.toolbar-title-md, .bar-button-default-md:hover:not(.disable-hover),
+.bar-button-clear-md-default:hover:not(.disable-hover), .bar-button-md-default:hover:not(.disable-hover) {
+  color: #ffffff;
+}
+
+ion-app.md, .ion-page > ion-content, .content-md, .item-md {
+  background-color: #E1E2E1;
+}
+
+.label-md {
+  margin: 0;
+}

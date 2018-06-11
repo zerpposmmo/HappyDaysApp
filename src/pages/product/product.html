@@ -3,17 +3,27 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Liste des produits</ion-title>
+    <ion-title>Produit n°{{product.id}}</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content>
-  <ion-list>
-    <button ion-item (click)="itemTapped($event, item)">
-      Produit {{selectedItem.id}}
-    </button>
-  </ion-list>
-  <div *ngIf="selectedItem" padding>
-    You navigated here from <b>{{selectedItem.id}}</b>
-  </div>
+  <ion-card>
+    <ion-card-header>
+      Produit {{product.id}}
+    </ion-card-header>
+    <ion-card-content>
+      <ul>
+        <li>
+          Localisation : X = {{product.x}}, Y = {{product.y}}
+        </li>
+        <li>
+          Poids : {{product.poids}}
+        </li>
+        <li>
+          Volume : {{product.volume}}
+        </li>
+      </ul>
+    </ion-card-content>
+  </ion-card>
 </ion-content>

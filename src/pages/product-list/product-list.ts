@@ -1,7 +1,9 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { Product } from '../../app/product';
-import { ApiProvider } from "../../providers/api/api";
+import {Component} from '@angular/core';
+import {IonicPage, NavController, NavParams} from 'ionic-angular';
+import {Product} from '../../app/product';
+import {ApiProvider} from "../../providers/api/api";
+import {ProductPage} from "../product/product";
+import {PackageProductQuantity} from "../../app/packageProductQuantity";
 
 @IonicPage()
 @Component({
@@ -10,8 +12,7 @@ import { ApiProvider } from "../../providers/api/api";
 })
 export class ProductListPage {
 
- 
-  items: Array<Product>;
+  items: Array<object>;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public apiProvider: ApiProvider) {
     this.items = [];
@@ -23,16 +24,30 @@ export class ProductListPage {
   }
 
   populateItems() {
-    this.apiProvider.get('products')
-      .then(data => {
-        Object.keys(data).forEach(key=> {
-          this.items.push(new Product(parseInt(data[key].ID), parseInt(data[key].POIDS), parseInt(data[key].VOLUME), parseInt(data[key].X), parseInt(data[key].Y))); 
+    console.log(this.navParams.get('item'));
+    if (this.navParams.get('item')) {
+      this.apiProvider.get('package/' + this.navParams.get('item').id)
+        .then(data => {
+          Object.keys(data).forEach(key => {
+            this.items.push(new PackageProductQuantity(
+              this.navParams.get('item'),
+              new Product(parseInt(data[key].PRODUIT_ID), parseInt(data[key].POIDS), parseInt(data[key].VOLUME), parseInt(data[key].X), parseInt(data[key].Y)),
+              data[key].QUANTITE));
+          });
         });
-      });
+    } else {
+      this.apiProvider.get('products')
+        .then(data => {
+          Object.keys(data).forEach(key => {
+            this.items.push(new Product(parseInt(data[key].ID), parseInt(data[key].POIDS), parseInt(data[key].VOLUME), parseInt(data[key].X), parseInt(data[key].Y)));
+          });
+        });
+    }
+
   }
 
   itemTapped(event, item) {
-    this.navCtrl.push(ProductListPage, {
+    this.navCtrl.push(ProductPage, {
       item: item
     });
   }

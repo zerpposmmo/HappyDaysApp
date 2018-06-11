@@ -10,7 +10,14 @@
 <ion-content>
   <ion-list>
     <button ion-item *ngFor="let item of items" (click)="itemTapped($event, item)">
-      Commande {{item.id}}
+      <ion-card>
+        <ion-card-header>
+          Commande {{item.id}}
+        </ion-card-header>
+        <ion-card-content>
+
+        </ion-card-content>
+      </ion-card>
     </button>
   </ion-list>
   <div *ngIf="selectedItem" padding>

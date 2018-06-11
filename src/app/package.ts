@@ -1,9 +1,9 @@
-import {Product} from "./product";
 import {Tour} from "./tour";
+import {PackageProductQuantity} from "./packageProductQuantity";
 
 export class Package {
   private _id: number;
-  private _products: Array<Product>;
+  private _products: Array<PackageProductQuantity>;
   private _poidsMax: number;
   private _volumeMax: number;
   private _orderId: number;
@@ -21,7 +21,7 @@ export class Package {
     return this._id;
   }
 
-  get products(): Array<Product> {
+  get products(): Array<PackageProductQuantity> {
     return this._products;
   }
 

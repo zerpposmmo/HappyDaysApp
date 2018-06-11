@@ -9,15 +9,17 @@
 
 <ion-content>
   <ion-list>
-    <ion-card ion-item *ngFor="let item of items" (click)="itemTapped($event, item)">
-      <ion-card-header>
-        Produit n°{{item.productId}}
-      </ion-card-header>
+    <button ion-item *ngFor="let item of items" (click)="itemTapped($event, item)">
+      <ion-card>
+        <ion-card-header>
+          Produit n°{{item.product.id}}
+        </ion-card-header>
 
-      <ion-card-content>
-        Quantité : {{item.quantity}}
-      </ion-card-content>
-    </ion-card>
+        <ion-card-content>
+          Quantité : {{item.quantity}}
+        </ion-card-content>
+      </ion-card>
+    </button>
   </ion-list>
   <div *ngIf="selectedItem" padding>
     You navigated here from <b>{{selectedItem.id}}</b>

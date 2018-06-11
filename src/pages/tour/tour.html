@@ -3,14 +3,25 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Liste des tournées</ion-title>
+    <ion-title>Tournée n°{{tour.id}}</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content>
   <ion-list>
     <button ion-item *ngFor="let item of tour.packages" (click)="itemTapped($event, item)">
-      Colis {{item.id}}
+      <ion-card>
+        <ion-card-header>
+          Colis {{item.id}}
+        </ion-card-header>
+        <ion-card-content>
+          <ul>
+            <li>
+              Commande n°{{item.orderId}}
+            </li>
+          </ul>
+        </ion-card-content>
+      </ion-card>
     </button>
   </ion-list>
   <div *ngIf="selectedItem" padding>

@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {Tour} from "../../app/tour";
 import {ApiProvider} from "../../providers/api/api";
 import {Package} from "../../app/package";
+import {ProductListPage} from "../product-list/product-list";
 
 @IonicPage()
 @Component({
@@ -29,5 +30,11 @@ export class TourPage {
           this.tour.addPackage(p);
         });
       });
+  }
+
+  itemTapped(event, item) {
+    this.navCtrl.push(ProductListPage, {
+      item: item
+    });
   }
 }
