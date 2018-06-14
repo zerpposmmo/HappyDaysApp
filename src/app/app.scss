@@ -14,7 +14,7 @@
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
 
-.toolbar-background-md {
+.toolbar-background-md, .fab-md, .fab-md.activated {
   background-color: #005f63;
   border-color: #003539;
 }
@@ -31,4 +31,20 @@ ion-app.md, .ion-page > ion-content, .content-md, .item-md {
 
 .label-md {
   margin: 0;
+}
+
+.navigation-list.list-md .item-block {
+  &.collected {
+    background-color: #f53d3d;
+  }
+  .item-inner {
+    border-bottom-color: #222222;
+    margin-bottom: 10px;
+  }
+}
+
+.ion-icon{
+  &.big-icon {
+    font-size: 4em;
+  }
 }

@@ -1,12 +1,23 @@
 <ion-header>
   <ion-navbar>
-    <button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
-    </button>
-    <ion-title>Naviguer</ion-title>
+    <ion-title>Navigation tournée n°{{tour.id}}</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
+
+  <ion-list class="navigation-list">
+    <button ion-item *ngFor="let item of items;let i = index" [attr.data-index]="i" [id]="i" (click)="itemTapped($event, item, i)" class="collected" [class.collected]="item.tourStatus === 1">
+      #{{i+1}} : Produit n°{{item.product.id}}
+      <ul>
+        <li>
+          X : {{item.product.x}}
+        </li>
+        <li>
+          Y : {{item.product.y}}
+        </li>
+      </ul>
+    </button>
+  </ion-list>
 
 </ion-content>

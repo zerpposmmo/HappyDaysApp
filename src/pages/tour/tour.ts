@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import {IonicPage, ModalController, NavController, NavParams} from 'ionic-angular';
 import {Tour} from "../../app/tour";
 import {ApiProvider} from "../../providers/api/api";
 import {Package} from "../../app/package";
 import {ProductListPage} from "../product-list/product-list";
+import {NavigatePage} from "../navigate/navigate";
 
 @IonicPage()
 @Component({
@@ -14,7 +15,7 @@ export class TourPage {
 
   tour: Tour;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,  public apiProvider: ApiProvider) {
+  constructor(public navCtrl: NavController, public modalCtrl: ModalController, public navParams: NavParams,  public apiProvider: ApiProvider) {
     this.tour = this.navParams.get('item');
     this.getTourInfo();
   }
@@ -36,5 +37,11 @@ export class TourPage {
     this.navCtrl.push(ProductListPage, {
       item: item
     });
+  }
+
+  startNavigation() {
+    this.modalCtrl.create(NavigatePage, {
+      item: this.tour
+    }).present();
   }
 }

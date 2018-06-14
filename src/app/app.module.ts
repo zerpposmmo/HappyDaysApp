@@ -15,6 +15,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { HttpClientModule } from '@angular/common/http';
 import { ApiProvider } from '../providers/api/api';
+import {NavigatePage} from "../pages/navigate/navigate";
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { ApiProvider } from '../providers/api/api';
     ProductPage,
     ProductListPage,
     TourPage,
+    NavigatePage
   ],
   imports: [
     BrowserModule,
@@ -44,6 +46,7 @@ import { ApiProvider } from '../providers/api/api';
     ProductPage,
     ProductListPage,
     TourPage,
+    NavigatePage
   ],
   providers: [
     StatusBar,

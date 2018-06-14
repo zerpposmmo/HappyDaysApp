@@ -23,11 +23,16 @@ export class TourListPage {
     console.log('ionViewDidLoad TourListPage');
   }
 
+  ionViewDidEnter() {
+    this.items = [];
+    this.populateItems();
+  }
+
   populateItems() {
     this.apiProvider.get('tours')
       .then(data => {
         Object.keys(data).forEach(key=> {
-          this.items.push(new Tour(parseInt(data[key].ID)));
+          this.items.push(new Tour(parseInt(data[key].ID), parseInt(data[key].ETAT)));
         });
       });
   }

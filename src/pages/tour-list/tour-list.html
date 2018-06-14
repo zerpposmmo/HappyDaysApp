@@ -12,10 +12,13 @@
     <button ion-item *ngFor="let item of items" (click)="itemTapped($event, item)">
       <ion-card>
         <ion-card-header>
+          <ion-icon class="big-icon" *ngIf="item.etat === 0" name="warning"></ion-icon>
+          <ion-icon class="big-icon" *ngIf="item.etat === 1" name="checkmark-circle"></ion-icon>
           Tournée {{item.id}}
         </ion-card-header>
         <ion-card-content>
-
+          <span *ngIf="item.etat === 0">A faire</span>
+          <span *ngIf="item.etat === 1">Terminée</span>
         </ion-card-content>
       </ion-card>
     </button>

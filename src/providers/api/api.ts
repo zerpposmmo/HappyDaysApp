@@ -25,4 +25,13 @@ export class ApiProvider {
     });
   }
 
+  post(route) {
+    return new Promise(resolve => {
+      this.http.post(ENV.apiUrl + route, '').subscribe(data => {
+        resolve(data);
+      }, err => {
+        console.log(err);
+      });
+    });
+  }
 }
