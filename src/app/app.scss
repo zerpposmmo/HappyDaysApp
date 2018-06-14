@@ -26,25 +26,33 @@
 }
 
 ion-app.md, .ion-page > ion-content, .content-md, .item-md {
-  background-color: #E1E2E1;
+  background-color: #f4f4f7;
 }
 
 .label-md {
   margin: 0;
 }
 
-.navigation-list.list-md .item-block {
-  &.collected {
-    background-color: #f53d3d;
+.navigation-list {
+  margin: 0;
+  &.list-md .item-block {
+    padding: 0;
+    .collected {
+      background-color: #1abc9c;
+    }
+    .item-inner {
+      padding: 0;
+    }
   }
-  .item-inner {
-    border-bottom-color: #222222;
-    margin-bottom: 10px;
+  .card-md {
+    margin: 0;
+    width: 100%;
+    border-bottom: 1px solid #005f63;
   }
 }
-
-.ion-icon{
+ion-icon{
   &.big-icon {
     font-size: 4em;
+    color: #2c3e50;
   }
 }

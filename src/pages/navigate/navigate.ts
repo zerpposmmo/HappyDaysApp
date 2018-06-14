@@ -1,5 +1,5 @@
 import {Component, ViewChild} from '@angular/core';
-import {AlertController, Content, IonicPage, NavParams, ViewController} from 'ionic-angular';
+import {AlertController, Content, IonicPage, NavParams, ToastController, ViewController} from 'ionic-angular';
 import {Tour} from "../../app/tour";
 import {ApiProvider} from "../../providers/api/api";
 import {Product} from "../../app/product";
@@ -24,7 +24,7 @@ export class NavigatePage {
   tour: Tour;
   items: Array<PackageProductQuantity>;
 
-  constructor(public alertCtrl: AlertController, public viewCtrl: ViewController, public navParams: NavParams, public apiProvider: ApiProvider) {
+  constructor(public alertCtrl: AlertController, public toastCtrl: ToastController, public viewCtrl: ViewController, public navParams: NavParams, public apiProvider: ApiProvider) {
     this.items = [];
     this.tour = this.navParams.get('item');
     this.getNavigationInfo();
@@ -57,31 +57,33 @@ export class NavigatePage {
         }
       }
     } else {
-      let etape = index+1;
+      let etape = index + 1;
       const alert = this.alertCtrl.create({
-      title: 'Revenir à l\'étape ' + etape + ' ?',
-      buttons: [
-        {
-          text: 'Non'
-        },
-        {
-          text: 'Oui',
-          handler: () => {
-            for (i; i >= index; i--) {
-              this.items[i].tourStatus = 0;
+        title: 'Revenir à l\'étape ' + etape + ' ?',
+        buttons: [
+          {
+            text: 'Non'
+          },
+          {
+            text: 'Oui',
+            handler: () => {
+              for (i; i >= index; i--) {
+                this.items[i].tourStatus = 0;
+              }
+              this.scrollTo(index);
             }
-            this.scrollTo(index);
           }
-        }
-      ]
-    });
+        ]
+      });
       alert.present();
     }
   }
 
   endTour() {
     this.apiProvider.post('updateTour/' + this.tour.id).then(data => {
-        this.viewCtrl.dismiss();
+      this.tour.etat = 1;
+      this.viewCtrl.dismiss(this.tour);
+      this.presentToast('Tournée ' + this.tour.id + ' terminée !');
     });
   }
 
@@ -93,7 +95,6 @@ export class NavigatePage {
           text: 'Non',
           handler: () => {
             lastItem.tourStatus = 0;
-            alert.dismiss();
           }
         },
         {
@@ -107,9 +108,17 @@ export class NavigatePage {
     alert.present();
   }
 
-  scrollTo(element:string) {
+  scrollTo(element: string) {
     let yOffset = document.getElementById(element).offsetTop;
     this.content.scrollTo(0, yOffset, 300)
+  }
+
+  presentToast(message: string) {
+    const toast = this.toastCtrl.create({
+      message: message,
+      duration: 3000
+    });
+    toast.present();
   }
 
 }

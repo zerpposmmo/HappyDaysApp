@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {IonicPage, ModalController, NavController, NavParams} from 'ionic-angular';
+import {IonicPage, ModalController, NavController, NavParams, ToastController} from 'ionic-angular';
 import {Tour} from "../../app/tour";
 import {ApiProvider} from "../../providers/api/api";
 import {Package} from "../../app/package";
@@ -15,7 +15,7 @@ export class TourPage {
 
   tour: Tour;
 
-  constructor(public navCtrl: NavController, public modalCtrl: ModalController, public navParams: NavParams,  public apiProvider: ApiProvider) {
+  constructor(public navCtrl: NavController, public modalCtrl: ModalController, public toastCtrl: ToastController, public navParams: NavParams,  public apiProvider: ApiProvider) {
     this.tour = this.navParams.get('item');
     this.getTourInfo();
   }
@@ -23,6 +23,7 @@ export class TourPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad TourPage');
   }
+
   getTourInfo() {
     this.apiProvider.get('tour/' + this.tour.id)
       .then(data => {
@@ -40,8 +41,22 @@ export class TourPage {
   }
 
   startNavigation() {
-    this.modalCtrl.create(NavigatePage, {
-      item: this.tour
-    }).present();
+    if(this.tour.etat !== 1) {
+      let modal = this.modalCtrl.create(NavigatePage, {
+        item: this.tour
+      });
+      modal.onDidDismiss(tour => {
+        if(tour.etat === 1) {
+          this.tour.etat = 1;
+        }
+      });
+      modal.present();
+    } else {
+      const toast = this.toastCtrl.create({
+        message: 'Tournée déjà effectuée',
+        duration: 3000
+      });
+      toast.present();
+    }
   }
 }

@@ -47,8 +47,12 @@ export class ProductListPage {
   }
 
   itemTapped(event, item) {
+    let product;
+    if(item.product) {
+      product = item.product;
+    } else product = item;
     this.navCtrl.push(ProductPage, {
-      item: item
+      item: product
     });
   }
 }

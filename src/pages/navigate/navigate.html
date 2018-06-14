@@ -4,20 +4,44 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-
-  <ion-list class="navigation-list">
-    <button ion-item *ngFor="let item of items;let i = index" [attr.data-index]="i" [id]="i" (click)="itemTapped($event, item, i)" class="collected" [class.collected]="item.tourStatus === 1">
-      #{{i+1}} : Produit n°{{item.product.id}}
-      <ul>
-        <li>
-          X : {{item.product.x}}
-        </li>
-        <li>
-          Y : {{item.product.y}}
-        </li>
-      </ul>
+<ion-content>
+  <ion-list no-lines class="navigation-list">
+    <button ion-item *ngFor="let item of items;let i = index" [attr.data-index]="i" [id]="i"
+            (click)="itemTapped($event, item, i)">
+      <ion-card class="collected" [class.collected]="item.tourStatus === 1">
+        <ion-card-header>
+          #{{i+1}} : Produit n°{{item.product.id}}
+        </ion-card-header>
+        <ion-card-content>
+          <ion-grid>
+            <ion-row>
+              <ion-col>
+                <ul>
+                  <li>
+                    X : {{item.product.x}}
+                  </li>
+                  <li>
+                    Y : {{item.product.y}}
+                  </li>
+                </ul>
+              </ion-col>
+              <ion-col>
+                <ul>
+                  <li>
+                    Colis n°{{item.package.id}}
+                  </li>
+                  <li>
+                    Commande n°{{item.package.orderId}}
+                  </li>
+                </ul>
+              </ion-col>
+              <ion-col text-right padding="10px">
+                <ion-icon class="big-icon" *ngIf="item.tourStatus === 1" name="checkmark"></ion-icon>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-card-content>
+      </ion-card>
     </button>
   </ion-list>
-
 </ion-content>

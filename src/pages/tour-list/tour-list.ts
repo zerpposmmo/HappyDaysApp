@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import {IonicPage, NavController, NavParams} from 'ionic-angular';
 import {Tour} from "../../app/tour";
 import {ApiProvider} from "../../providers/api/api";
 import {TourPage} from "../tour/tour";
@@ -16,7 +16,6 @@ export class TourListPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public apiProvider: ApiProvider) {
     this.items = [];
-    this.populateItems();
   }
 
   ionViewDidLoad() {
